@@ -16,7 +16,6 @@ class Gem::Commands::ChangelogCommand < Gem::Command
   end
 
   def execute
-    p options
     args = options[:args]
 
     gem_name = args.first
