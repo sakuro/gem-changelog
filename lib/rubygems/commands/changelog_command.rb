@@ -58,7 +58,7 @@ class Gem::Commands::ChangelogCommand < Gem::Command
 
   private
 
-  CHANGELOG_RE = Regexp.union(/\ACHANGELOG\b/i, /\ACHANGES\b/i)
+  CHANGELOG_RE = Regexp.union(/\ACHANGELOG\b/i, /\ACHANGES\b/i, /\AHistory\b/i)
 
   def files(dir)
     Dir.entries(dir).select {|e| FileTest.file?(File.join(dir, e)) }
