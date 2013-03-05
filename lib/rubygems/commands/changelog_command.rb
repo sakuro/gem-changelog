@@ -3,7 +3,7 @@
 require 'rubygems/command'
 
 class Gem::Commands::ChangelogCommand < Gem::Command
-  
+
   def initialize
     super 'changelog', 'Show the changelog of given gem'
 
