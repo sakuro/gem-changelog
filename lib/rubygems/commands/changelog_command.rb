@@ -38,7 +38,7 @@ class Gem::Commands::ChangelogCommand < Gem::Command
         say('Changelog file could not be found.')
       else
         say('Changelog file could not be found. Try -f option with one of following file(s).')
-        files.each do |file|
+        files(spec.gem_dir).each do |file|
           say('- %s' % file)
         end
       end
