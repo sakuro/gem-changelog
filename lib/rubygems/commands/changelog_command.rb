@@ -13,6 +13,10 @@ class Gem::Commands::ChangelogCommand < Gem::Command
     add_option '-v VERSION', 'Specify version' do |v|
       options[:version_requirement] = v
     end
+    add_option '-n', '--lines=LINES', 'Show the first LINES lines of the changelog' do |v|
+      raise OptionParser::InvalidArgument, v unless v =~ OptionParser::DecimalInteger
+      options[:lines] = v.to_i
+    end
   end
 
   def execute
@@ -45,7 +49,14 @@ class Gem::Commands::ChangelogCommand < Gem::Command
       terminate_interaction 1
     end
 
-    system(pager, File.join(spec.gem_dir, changelog_file))
+    changelog_path = File.join(spec.gem_dir, changelog_file)
+    if options[:lines]
+      open changelog_path do |file|
+        puts file.each_line.take(options[:lines])
+      end
+    else
+      system(pager, changelog_path)
+    end
   end
 
   def usage
