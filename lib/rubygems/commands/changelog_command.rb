@@ -51,9 +51,7 @@ class Gem::Commands::ChangelogCommand < Gem::Command
 
     changelog_path = File.join(spec.gem_dir, changelog_file)
     if options[:lines]
-      open changelog_path do |file|
-        puts file.each_line.take(options[:lines])
-      end
+      show_first_lines(changelog_path, options[:lines])
     else
       system(pager, changelog_path)
     end
@@ -65,6 +63,12 @@ class Gem::Commands::ChangelogCommand < Gem::Command
 
   def arguments
     'GEM_NAME      name of the gem to show'
+  end
+
+  def show_first_lines(file_path, number=10)
+    open file_path do |file|
+      puts file.each_line.take(number)
+    end
   end
 
   private
