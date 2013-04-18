@@ -65,6 +65,10 @@ class Gem::Commands::ChangelogCommand < Gem::Command
     'GEM_NAME      name of the gem to show'
   end
 
+  def find_changelog_file(spec)
+    files(spec.gem_dir).sort.find {|file| CHANGELOG_RE === file }
+  end
+
   def show_first_lines(file_path, number=10)
     open file_path do |file|
       puts file.each_line.take(number)
@@ -77,10 +81,6 @@ class Gem::Commands::ChangelogCommand < Gem::Command
 
   def files(dir)
     Dir.entries(dir).select {|e| FileTest.file?(File.join(dir, e)) }
-  end
-
-  def find_changelog_file(spec)
-    files(spec.gem_dir).sort.find {|file| CHANGELOG_RE === file }
   end
 
   def pager
