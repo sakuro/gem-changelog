@@ -1,6 +1,7 @@
 # -*- encoding: UTF-8 -*-
 
 require 'rubygems/command_manager'
+require 'rubygems/security'
 require 'rubygems/install_update_options'
 require 'rubygems/commands/changelog_command'
 
