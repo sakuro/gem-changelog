@@ -28,13 +28,7 @@ class Gem::Commands::ChangelogCommand < Gem::Command
       terminate_interaction 1
     end
     version_requirement = options[:version_requirement]
-
-    begin
-      spec = Gem::Specification.find_by_name(gem_name, version_requirement)
-    rescue Gem::LoadError => e
-      say e.message
-      terminate_interaction 1
-    end
+    spec = find_spec(gem_name, version_requirement)
 
     changelog_file = options[:changelog_name] || find_changelog_file(spec)
     unless changelog_file
@@ -85,5 +79,12 @@ class Gem::Commands::ChangelogCommand < Gem::Command
 
   def pager
     ENV['PAGER'] || 'more'
+  end
+
+  def find_spec(gem_name, version_requirement)
+    Gem::Specification.find_by_name(gem_name, version_requirement)
+  rescue Gem::LoadError => e
+    say e.message
+    terminate_interaction 1
   end
 end
