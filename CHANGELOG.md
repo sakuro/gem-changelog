@@ -1,3 +1,7 @@
+## 1.0.4 (2016-02-28)
+
+- Enhancement: Prerelease gems are now included when finding spec
+
 ## 1.0.3 (2013-05-31)
 
 - Bugfix: `files` method requires spec dir. [kyanny]
