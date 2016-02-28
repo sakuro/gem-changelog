@@ -27,7 +27,8 @@ class Gem::Commands::ChangelogCommand < Gem::Command
       show_help
       terminate_interaction 1
     end
-    version_requirement = options[:version_requirement]
+
+    version_requirement = options[:version_requirement] || '>=0.pre'
     spec = find_spec(gem_name, version_requirement)
 
     changelog_file = options[:changelog_name] || find_changelog_file(spec)
