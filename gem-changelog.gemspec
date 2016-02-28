@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["sakuro@2238club.org"]
   spec.description   = %q{This gem plugin add changelog subcommand to te gem system.}
   spec.summary       = %q{Show the changelog of given gem}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/sakuro/gem-changelog"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
